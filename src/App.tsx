@@ -12,6 +12,7 @@ import CriptoLab from './components/CriptoLab';
 import CriptoSafe from './components/CriptoSafe';
 import Tokenomics from './components/Tokenomics';
 import AboutProject from './components/AboutProject';
+import CryptoTicker from './components/CryptoTicker';
 
 // Import icons
 import {
@@ -27,7 +28,11 @@ import {
   Bell,
   Menu,
   X,
-  Plus
+  Plus,
+  Instagram,
+  Facebook,
+  MessageCircle,
+  Music
 } from 'lucide-react';
 
 export default function App() {
@@ -109,21 +114,68 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-neutral-200 font-sans selection:bg-red-600 selection:text-white flex flex-col">
       
+      {/* Real-time Crypto Price Ticker */}
+      <CryptoTicker />
+      
       {/* Top sticky Navigation Header */}
       <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-neutral-900 px-4 lg:px-8 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          {/* Brand Logo design: Red shield badge */}
-          <div className="w-9 h-9 bg-red-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-red-950/40">
-            TZC
+        <div className="flex items-center gap-3 md:gap-5 shrink-0">
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Brand Logo design: Red shield badge */}
+            <div className="w-9 h-9 bg-red-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-red-950/40 shrink-0">
+              TZC
+            </div>
+            <div>
+              <h1 className="text-white font-bold text-sm md:text-base tracking-tight flex items-center gap-1.5">
+                TuZonaCripto
+                <span className="text-[9px] md:text-[10px] bg-red-950 text-red-500 border border-red-900/30 px-1.5 py-0.5 rounded font-mono shrink-0">
+                  BETA v1.2
+                </span>
+              </h1>
+              <p className="text-[9px] md:text-[10px] text-neutral-500 font-medium whitespace-nowrap">Directorio Inteligente & Economía Real</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-white font-bold text-base tracking-tight flex items-center gap-1.5">
-              TuZonaCripto
-              <span className="text-[10px] bg-red-950 text-red-500 border border-red-900/30 px-1.5 py-0.5 rounded font-mono">
-                BETA v1.2
-              </span>
-            </h1>
-            <p className="text-[10px] text-neutral-500 font-medium">Directorio Inteligente & Economía Real</p>
+
+          {/* Social Media Links */}
+          <div className="flex items-center gap-2.5 md:gap-3.5 border-l border-neutral-900 pl-3 md:pl-5 py-1">
+            <a
+              href="https://instagram.com/tuzonacripto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white transition duration-200"
+              title="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href="https://facebook.com/tuzonacripto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white transition duration-200"
+              title="Facebook"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a
+              href="https://tiktok.com/@tuzonacripto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white transition duration-200 flex items-center gap-1"
+              title="TikTok"
+            >
+              <Music className="w-4 h-4 text-neutral-500" />
+              <span className="text-[9px] font-bold text-neutral-500 hover:text-white hidden lg:inline">TikTok</span>
+            </a>
+            <a
+              href="https://wa.me/584121516082" // Provide a real or professional WhatsApp contact link based on TuZonaCripto
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-600/10 hover:bg-emerald-600 text-emerald-500 hover:text-white border border-emerald-900/40 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all duration-200 flex items-center gap-1.5 shrink-0 ml-1"
+              title="WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-emerald-500/10" />
+              <span className="hidden sm:inline">WhatsApp</span>
+            </a>
           </div>
         </div>
 
