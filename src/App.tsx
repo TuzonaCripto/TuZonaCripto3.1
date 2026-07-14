@@ -119,8 +119,8 @@ export default function App() {
       
       {/* Top sticky Navigation Header */}
       <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-neutral-900 px-4 lg:px-8 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-3 md:gap-5 shrink-0">
-          <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-3 md:gap-5 min-w-0">
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
             {/* Brand Logo design: Red shield badge */}
             <div className="w-9 h-9 bg-red-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-red-950/40 shrink-0">
               TZC
@@ -132,12 +132,12 @@ export default function App() {
                   BETA v1.2
                 </span>
               </h1>
-              <p className="text-[9px] md:text-[10px] text-neutral-500 font-medium whitespace-nowrap">Directorio Inteligente & Economía Real</p>
+              <p className="text-[9px] md:text-[10px] text-neutral-500 font-medium whitespace-nowrap hidden sm:block">Directorio Inteligente & Economía Real</p>
             </div>
           </div>
 
-          {/* Social Media Links */}
-          <div className="flex items-center gap-2.5 md:gap-3.5 border-l border-neutral-900 pl-3 md:pl-5 py-1">
+          {/* Social Media Links (Visible in header on tablet/desktop, hidden on mobile to avoid layout breaking) */}
+          <div className="hidden sm:flex items-center gap-2.5 md:gap-3.5 border-l border-neutral-900 pl-3 md:pl-5 py-1">
             <a
               href="https://instagram.com/tuzonacripto"
               target="_blank"
@@ -258,7 +258,7 @@ export default function App() {
 
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-neutral-950 border-b border-neutral-900 p-4 space-y-2 z-40">
+          <div className="lg:hidden bg-neutral-950 border-b border-neutral-900 p-4 space-y-3 z-40">
             <nav className="grid grid-cols-1 gap-1">
               {menuItems.map((item) => {
                 const isActive = activeTab === item.id;
@@ -273,7 +273,7 @@ export default function App() {
                       }
                     }}
                     className={`flex items-center gap-3 p-2.5 rounded-lg text-xs font-semibold text-left transition ${
-                      isActive ? 'bg-neutral-900 text-white' : 'text-neutral-400'
+                      isActive ? 'bg-neutral-900 text-white border-l-2 border-red-600' : 'text-neutral-400'
                     }`}
                   >
                     <span>{item.icon}</span>
@@ -282,6 +282,49 @@ export default function App() {
                 );
               })}
             </nav>
+
+            {/* Mobile Social Links Section */}
+            <div className="border-t border-neutral-900 pt-3 mt-1 flex flex-col gap-2">
+              <p className="text-[9px] text-neutral-500 font-bold uppercase tracking-wider px-1">Conéctate con Nosotros</p>
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href="https://instagram.com/tuzonacripto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg py-2 px-3 flex items-center gap-2 text-xs text-neutral-300 transition"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-pink-500" />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://facebook.com/tuzonacripto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg py-2 px-3 flex items-center gap-2 text-xs text-neutral-300 transition"
+                >
+                  <Facebook className="w-3.5 h-3.5 text-blue-500" />
+                  <span>Facebook</span>
+                </a>
+                <a
+                  href="https://tiktok.com/@tuzonacripto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg py-2 px-3 flex items-center gap-2 text-xs text-neutral-300 transition"
+                >
+                  <Music className="w-3.5 h-3.5 text-red-500" />
+                  <span>TikTok</span>
+                </a>
+                <a
+                  href="https://wa.me/584121516082"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-emerald-950/40 hover:bg-emerald-950/70 border border-emerald-900/50 rounded-lg py-2 px-3 flex items-center gap-2 text-xs text-emerald-400 transition"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
           </div>
         )}
 
