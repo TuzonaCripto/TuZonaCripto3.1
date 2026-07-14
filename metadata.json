@@ -1,0 +1,10 @@
+{
+  "name": "Remix: TuZonaCripto",
+  "description": "El primer directorio inteligente de comercios, profesionales y servicios que aceptan criptomonedas. Incluye geolocalización avanzada, pasarela de pagos descentralizada, plataforma de crédito, movilidad urbana y más.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
