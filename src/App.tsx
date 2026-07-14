@@ -13,6 +13,7 @@ import CriptoSafe from './components/CriptoSafe';
 import Tokenomics from './components/Tokenomics';
 import AboutProject from './components/AboutProject';
 import CryptoTicker from './components/CryptoTicker';
+import CriptoPlanes from './components/CriptoPlanes';
 
 // Import icons
 import {
@@ -32,11 +33,12 @@ import {
   Instagram,
   Facebook,
   MessageCircle,
-  Music
+  Music,
+  Store
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'map' | 'flow' | 'pay' | 'rides' | 'go' | 'lab' | 'safe' | 'tokenomics' | 'about'>('map');
+  const [activeTab, setActiveTab] = useState<'map' | 'flow' | 'pay' | 'rides' | 'go' | 'lab' | 'safe' | 'tokenomics' | 'about' | 'planes'>('map');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Core Global Reactive State
@@ -108,6 +110,7 @@ export default function App() {
     { id: 'lab', label: 'CriptoLab (Academia)', icon: <GraduationCap className="w-4 h-4" /> },
     { id: 'safe', label: 'CriptoSafe & LA/FT', icon: <Shield className="w-4 h-4" /> },
     { id: 'tokenomics', label: 'Tokenomics & Staking', icon: <Coins className="w-4 h-4 text-red-500" /> },
+    { id: 'planes', label: 'Planes e Inscripción', icon: <Store className="w-4 h-4 text-red-500" /> },
     { id: 'about', label: 'Nosotros & Finanzas', icon: <Compass className="w-4 h-4" /> },
   ];
 
@@ -389,6 +392,18 @@ export default function App() {
             <Tokenomics
               userTzcBalance={userTzcBalance}
               addUserTzc={addUserTzc}
+            />
+          )}
+
+          {activeTab === 'planes' && (
+            <CriptoPlanes
+              userTzcBalance={userTzcBalance}
+              addUserTzc={addUserTzc}
+              addTransaction={addTransaction}
+              onAddMerchant={(newMerchant) => {
+                setMerchantsList(prev => [newMerchant, ...prev]);
+              }}
+              setActiveTab={setActiveTab}
             />
           )}
 
