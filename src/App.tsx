@@ -14,6 +14,8 @@ import Tokenomics from './components/Tokenomics';
 import AboutProject from './components/AboutProject';
 import CryptoTicker from './components/CryptoTicker';
 import CriptoPlanes from './components/CriptoPlanes';
+import CriptoSeller from './components/CriptoSeller';
+import CriptoWallet from './components/CriptoWallet';
 
 // Import icons
 import {
@@ -34,11 +36,12 @@ import {
   Facebook,
   MessageCircle,
   Music,
-  Store
+  Store,
+  Users
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'map' | 'flow' | 'pay' | 'rides' | 'go' | 'lab' | 'safe' | 'tokenomics' | 'about' | 'planes'>('map');
+  const [activeTab, setActiveTab] = useState<'map' | 'flow' | 'pay' | 'rides' | 'go' | 'lab' | 'safe' | 'tokenomics' | 'about' | 'planes' | 'seller' | 'wallet'>('map');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Core Global Reactive State
@@ -103,6 +106,7 @@ export default function App() {
 
   const menuItems = [
     { id: 'map', label: 'CriptoMap (Directorio)', icon: <MapPin className="w-4 h-4" /> },
+    { id: 'wallet', label: 'Mi Billetera TZC', icon: <Wallet className="w-4 h-4 text-red-500 animate-pulse" /> },
     { id: 'flow', label: 'CriptoFlow (Créditos)', icon: <CreditCard className="w-4 h-4" /> },
     { id: 'pay', label: 'CriptoPay (Pasarela)', icon: <Coins className="w-4 h-4" /> },
     { id: 'rides', label: 'CriptoRides (Movilidad)', icon: <Car className="w-4 h-4" /> },
@@ -111,6 +115,7 @@ export default function App() {
     { id: 'safe', label: 'CriptoSafe & LA/FT', icon: <Shield className="w-4 h-4" /> },
     { id: 'tokenomics', label: 'Tokenomics & Staking', icon: <Coins className="w-4 h-4 text-red-500" /> },
     { id: 'planes', label: 'Planes e Inscripción', icon: <Store className="w-4 h-4 text-red-500" /> },
+    { id: 'seller', label: 'CriptoSeller (Comisiones)', icon: <Users className="w-4 h-4 text-red-500" /> },
     { id: 'about', label: 'Nosotros & Finanzas', icon: <Compass className="w-4 h-4" /> },
   ];
 
@@ -184,15 +189,21 @@ export default function App() {
 
         {/* Global Web3 wallet and tokens widget */}
         <div className="hidden md:flex items-center gap-4">
-          <div className="bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-1.5 text-right">
+          <button 
+            onClick={() => setActiveTab('wallet')}
+            className="bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-1.5 text-right cursor-pointer transition text-left"
+          >
             <span className="text-[9px] text-neutral-500 block font-bold uppercase tracking-wider">Tu Wallet no-custodial</span>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-white">0x7Fa8B50...9dF</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             </div>
-          </div>
+          </button>
 
-          <div className="bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-1.5 text-right flex items-center gap-3">
+          <button 
+            onClick={() => setActiveTab('wallet')}
+            className="bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-1.5 text-right flex items-center gap-3 cursor-pointer transition text-left"
+          >
             <div className="w-8 h-8 rounded-full bg-red-950/40 border border-red-900/30 flex items-center justify-center text-red-500 text-sm">
               🛡️
             </div>
@@ -200,15 +211,18 @@ export default function App() {
               <span className="text-[9px] text-neutral-500 block font-bold uppercase tracking-wider">Balance $TZC</span>
               <span className="text-sm font-mono font-black text-white">{userTzcBalance.toFixed(2)} TZC</span>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Mobile menu and wallet widget */}
         <div className="flex items-center gap-2 md:hidden">
-          <div className="bg-neutral-950 border border-neutral-800 rounded-lg px-2.5 py-1 text-center">
+          <button 
+            onClick={() => setActiveTab('wallet')}
+            className="bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 rounded-lg px-2.5 py-1 text-center cursor-pointer transition"
+          >
             <span className="text-[8px] text-neutral-500 block font-bold">TZC Balance</span>
             <span className="text-xs font-mono font-black text-white">{userTzcBalance.toFixed(0)}</span>
-          </div>
+          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-1.5 text-neutral-400 hover:text-white bg-neutral-900 rounded-lg border border-neutral-800 cursor-pointer"
@@ -404,6 +418,19 @@ export default function App() {
                 setMerchantsList(prev => [newMerchant, ...prev]);
               }}
               setActiveTab={setActiveTab}
+            />
+          )}
+
+          {activeTab === 'seller' && (
+            <CriptoSeller />
+          )}
+
+          {activeTab === 'wallet' && (
+            <CriptoWallet 
+              userTzcBalance={userTzcBalance}
+              addUserTzc={addUserTzc}
+              addTransaction={addTransaction}
+              transactions={transactions}
             />
           )}
 

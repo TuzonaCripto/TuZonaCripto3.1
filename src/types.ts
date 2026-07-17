@@ -88,7 +88,7 @@ export interface Lesson {
 export interface Transaction {
   id: string;
   hash: string;
-  type: 'Payment' | 'Staking' | 'Credit' | 'Reward' | 'SafeDeposit';
+  type: 'Payment' | 'Staking' | 'Credit' | 'Reward' | 'SafeDeposit' | 'Transfer' | 'Savings';
   amount: number;
   token: string;
   destination: string;
